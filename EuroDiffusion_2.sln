@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EuroDiffusion_2", "EuroDiffusion_2.csproj", "{D6AD058D-A719-45DC-B65A-7337B56D752F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|anycpu = Debug|anycpu
+		Release|anycpu = Release|anycpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6AD058D-A719-45DC-B65A-7337B56D752F}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{D6AD058D-A719-45DC-B65A-7337B56D752F}.Debug|anycpu.Build.0 = Debug|anycpu
+		{D6AD058D-A719-45DC-B65A-7337B56D752F}.Release|anycpu.ActiveCfg = Release|anycpu
+		{D6AD058D-A719-45DC-B65A-7337B56D752F}.Release|anycpu.Build.0 = Release|anycpu
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4985D75-1D3B-4AB5-BDFF-F7749C450FB7}
+	EndGlobalSection
+EndGlobal

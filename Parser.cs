@@ -7,20 +7,19 @@ namespace EuroDiffusion_2
     {
         // Дата
         public string[] _line;
-        //private int _case_number; // ?
         public int _country_quantity;
 
         // Конструктор
-        //public Parser() => _case_number = 0;
         public Parser() { }
 
         // Методы
         public int start_parse(List<caseStuct> cases)
         {
             caseStuct cs = new caseStuct();
-            if (!int.TryParse(Console.ReadLine(), out _country_quantity)) { return 0; } // выдает ошибку
+            if (!int.TryParse(Console.ReadLine(), out _country_quantity)) { return 0; }
             if (_country_quantity == 0) { return 2; }
             cs.countryInclude = new countryStruct[_country_quantity];
+            cs.toPrint = new printStruct[_country_quantity];
             for (int i = 0; i < _country_quantity; i++)
             {
                 _line = Console.ReadLine().Split(new char[] { ' ', '\t' },
@@ -33,7 +32,6 @@ namespace EuroDiffusion_2
                 cs.countryInclude[i].coord[1] = Convert.ToInt32(_line[2]);
                 cs.countryInclude[i].coord[2] = Convert.ToInt32(_line[3]);
                 cs.countryInclude[i].coord[3] = Convert.ToInt32(_line[4]);
-                //cs.countryInclude[i].case_number = _case_number; // ?
                 cs.countryInclude[i].townQuantity = ((cs.countryInclude[i].coord[2]
                     - cs.countryInclude[i].coord[0]) + 1) * ((cs.countryInclude[i].coord[3]
                     - cs.countryInclude[i].coord[1]) + 1);
