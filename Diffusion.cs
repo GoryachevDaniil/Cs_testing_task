@@ -66,18 +66,22 @@ namespace EuroDiffusion_2
                             if (_cityMap[i, j]._complete == true && _cityMap[i, j]._mark != 1)
                             {
                                 _cityMap[i, j]._mark = 1;
+                                Console.WriteLine($"===========================");
+                                Console.WriteLine($"{_cityMap[i, j]._countryName}");
+                                Console.WriteLine($"{_cityMap[i, j]._countryIndex}");
+                                Console.WriteLine($"{_cityMap[i, j]._wallet._ownWallet[0]}, {_cityMap[i, j]._wallet._ownWallet[1]}, {_cityMap[i, j]._wallet._ownWallet[2]}");
+                                Console.WriteLine($"{_cityMap[i, j]._complete}");
+                                Console.WriteLine($"===========================");
                                 cs.countryInclude[_cityMap[i, j]._countryIndex].townQuantity -= 1;
                             }
 
                 for (int i = 0; i < cs.countryQuantity; i++)
                     if (cs.countryInclude[i].townQuantity == 0 && cs.countryInclude[i].countryComplete != true)
                     {
-                        Console.WriteLine($"{cs.countryInclude[i].name}");
-                        Console.WriteLine($"{days}");
                         cs.countryInclude[i].countryComplete = true;
                         cs.countryInclude[i].finalDay = days;
-                        cs.toPrint[i].country = cs.countryInclude[i].name;
-                        cs.toPrint[i].days = cs.countryInclude[i].finalDay;
+                        cs.toPrint[i].country = cs.countryInclude[i].name; // ?
+                        cs.toPrint[i].days = cs.countryInclude[i].finalDay; // ?
                     }
 
                 cnt = 0;
