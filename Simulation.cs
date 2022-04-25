@@ -20,35 +20,38 @@ namespace EuroDiffusion_2
         {
             int days = 1;
             int diffMoney = 0;
-            //while (true)
-            while (days < 1326)
+            //while (days < 5)
+            while (true)
             {
+                if (cs.countryQuantity == 1)
+                    days = 0;
                 // посчитать бабло на отправку
                 // перекинуть в тмп
                 // отнять с мэйна отправителя
+                // Чекнуть другие кошельки
                 for (int i = 0; i < _ex_x; i++)
                     for (int j = 0; j < _ex_y; j++)
                         if (_townMap[i, j] != null)
-                        {
-                            diffMoney = _townMap[i, j]._wallet._ownWallet[_townMap[i, j]._countryIndex] / 1000;
-                            foreach (var neineighbor in _townMap[i, j]._neighbors)
-                                neineighbor._wallet._tmpWallet[_townMap[i, j]._countryIndex] = diffMoney;
-                            _townMap[i, j]._wallet._ownWallet[_townMap[i, j]._countryIndex] -= diffMoney;
-                        }
+                            for (int k = 0; k < cs.countryQuantity; k++)
+                                if (_townMap[i, j]._wallet._ownWallet[k] > 1000)
+                                {
+                                    diffMoney = _townMap[i, j]._wallet._ownWallet[k] / 1000;
+                                    foreach (var neineighbor in _townMap[i, j]._neighbors)
+                                        neineighbor._wallet._tmpWallet[k] += diffMoney;
+                                    _townMap[i, j]._wallet._ownWallet[k] -= diffMoney * _townMap[i, j]._neighborsCount;
+                                }
+
 
                 //с тмп закинуть на маин кэш
                 // почистить тмп    
                 for (int i = 0; i < _ex_x; i++)
                     for (int j = 0; j < _ex_y; j++)
                         if (_townMap[i, j] != null)
-                        {
                             for (int k = 0; k < _townMap[i, j]._wallet._tmpWallet.Length; k++)
                             {
                                 _townMap[i, j]._wallet._ownWallet[k] += _townMap[i, j]._wallet._tmpWallet[k];
                                 _townMap[i, j]._wallet._tmpWallet[k] = 0;
                             }
-
-                        }
 
                 //проверить на завершенность
                 int completeTown;
@@ -80,20 +83,6 @@ namespace EuroDiffusion_2
 
                 if (completeCountry == true)
                     return;
-
-
-                /// CHECK
-                ///
-
-                //for (int i = 0; i < _ex_x; i++)
-                //    for (int j = 0; j < _ex_y; j++)
-                //        if (_townMap[i, j] != null)
-                //        {
-                //            for (int k = 0; k < _townMap[i, j]._wallet._ownWallet.Length; k++)
-                //                Console.Write($"{_townMap[i, j]._wallet._ownWallet[k]}, ");
-                //            Console.WriteLine();
-                            
-                //        }
                 days++;
             }
         }
@@ -154,30 +143,9 @@ namespace EuroDiffusion_2
                 if (el.coord[2] > _ex_x) { _ex_x = el.coord[2]; }
                 if (el.coord[3] > _ex_y) { _ex_y = el.coord[3]; }
             }
-            //makingMap(elem); // ?
             registerCountries(elem);
             registerNeighbors(elem);
             doSimulation(elem);
-
-
-
-
-            // //PRINT MAP TO TEST // ?
-            //for (int i = 0; i < _ex_x; i++)
-            //{
-            //    for (int j = 0; j < _ex_y; j++)
-            //    {
-            //        Console.Write(_map[i, j]);
-            //    }
-            //    Console.WriteLine();
-            //}
-
-
-
-
-
-            // !!! CLEAR MAP !!!
-            // !!! PRINT CASE !!!
         }
     }
 }

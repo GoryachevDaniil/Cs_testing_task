@@ -53,7 +53,6 @@ namespace EuroDiffusion_2
             }
 
             //// PRINT RESULT
-
             int i;
             foreach (var elem in cases)
             {
@@ -61,6 +60,7 @@ namespace EuroDiffusion_2
                 Console.WriteLine($"Case number{i}");
                 for (int j = 0; j < elem.countryQuantity; j++)
                 {
+
                     Console.WriteLine($"{elem.countryInclude[j].name} {elem.countryInclude[j].finalDay}");
                 }
                 i++;
