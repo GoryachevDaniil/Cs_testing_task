@@ -4,7 +4,7 @@ namespace EuroDiffusion_2
 {
     public class City
     {
-        // Дата
+        // Data
         public string _countryName;
         public int _countryIndex;
         public bool _complete;
@@ -14,7 +14,7 @@ namespace EuroDiffusion_2
         public int _mark = 0;
 
 
-        // Конструктор
+        // Constructor
         public City(caseStuct elem, int country_index, int x, int y)
         {
             _countryIndex = country_index;

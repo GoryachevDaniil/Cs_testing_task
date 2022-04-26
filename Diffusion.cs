@@ -5,39 +5,42 @@ namespace EuroDiffusion_2
 {
     public class Diffusion
     {
-        // Дата
+        // Data
         public City[,] _cityMap;
-        public int?[,] _map;
         public int _ex_x = 0;
         public int _ex_y = 0;
         public int _currentDay = 0;
 
-        // Конструктор
+        // Constructor
         public Diffusion() { }
 
-        // Методы
+        // Methods
         public void doSimulation(caseStuct cs)
         {
-            int days = 0;
+            int days = 1;
             int diffMoney;
             int cnt;
 
             while (true)
             {
-                // посчитать бабло на отправку / перекинуть в тмп / отнять с мэйна отправителя / Чекнуть другие кошельки
+                if (cs.countryQuantity == 1)
+                {
+                    cs.toPrint[0].country = cs.countryInclude[0].name;
+                    cs.toPrint[0].days = 0;
+                    return;
+                }
+
                 for (int i = 0; i < _ex_x; i++)
                     for (int j = 0; j < _ex_y; j++)
                         if (_cityMap[i, j] != null)
                             for (int k = 0; k < cs.countryQuantity; k++)
-                                if (_cityMap[i, j]._wallet._ownWallet[k] > 1000)
-                                {
-                                    diffMoney = _cityMap[i, j]._wallet._ownWallet[k] / 1000;
-                                    foreach (var neineighbor in _cityMap[i, j]._neighbors)
-                                        neineighbor._wallet._tmpWallet[k] += diffMoney;
-                                    _cityMap[i, j]._wallet._ownWallet[k] -= diffMoney * _cityMap[i, j]._neighborsCount;
-                                }
+                            {
+                                diffMoney = _cityMap[i, j]._wallet._ownWallet[k] / 1000;
+                                foreach (var neineighbor in _cityMap[i, j]._neighbors)
+                                    neineighbor._wallet._tmpWallet[k] += diffMoney;
+                                _cityMap[i, j]._wallet._ownWallet[k] -= diffMoney * _cityMap[i, j]._neighborsCount;
+                            }
 
-                //с тмп закинуть на маин кэш / почистить тмп    
                 for (int i = 0; i < _ex_x; i++)
                     for (int j = 0; j < _ex_y; j++)
                         if (_cityMap[i, j] != null)
@@ -47,7 +50,6 @@ namespace EuroDiffusion_2
                                 _cityMap[i, j]._wallet._tmpWallet[k] = 0;
                             }
 
-                //проверить на завершенность
                 for (int i = 0; i < _ex_x; i++)
                     for (int j = 0; j < _ex_y; j++)
                         if (_cityMap[i, j] != null)
@@ -66,12 +68,6 @@ namespace EuroDiffusion_2
                             if (_cityMap[i, j]._complete == true && _cityMap[i, j]._mark != 1)
                             {
                                 _cityMap[i, j]._mark = 1;
-                                Console.WriteLine($"===========================");
-                                Console.WriteLine($"{_cityMap[i, j]._countryName}");
-                                Console.WriteLine($"{_cityMap[i, j]._countryIndex}");
-                                Console.WriteLine($"{_cityMap[i, j]._wallet._ownWallet[0]}, {_cityMap[i, j]._wallet._ownWallet[1]}, {_cityMap[i, j]._wallet._ownWallet[2]}");
-                                Console.WriteLine($"{_cityMap[i, j]._complete}");
-                                Console.WriteLine($"===========================");
                                 cs.countryInclude[_cityMap[i, j]._countryIndex].townQuantity -= 1;
                             }
 
@@ -80,8 +76,8 @@ namespace EuroDiffusion_2
                     {
                         cs.countryInclude[i].countryComplete = true;
                         cs.countryInclude[i].finalDay = days;
-                        cs.toPrint[i].country = cs.countryInclude[i].name; // ?
-                        cs.toPrint[i].days = cs.countryInclude[i].finalDay; // ?
+                        cs.toPrint[i].country = cs.countryInclude[i].name;
+                        cs.toPrint[i].days = cs.countryInclude[i].finalDay;
                     }
 
                 cnt = 0;
@@ -95,7 +91,6 @@ namespace EuroDiffusion_2
             }
         }
 
-        ////////////////////////////////////////////////////////
         public void registerNeighbors(caseStuct elem)
         {
             int neighborsCount;

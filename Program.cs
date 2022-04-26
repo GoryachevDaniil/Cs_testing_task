@@ -35,7 +35,7 @@ namespace EuroDiffusion_2
 
             Parser parser = new Parser();
 
-            // Парсим входные данные
+            // Parsing input data
 
             int parser_result;
             while (true)
@@ -49,8 +49,8 @@ namespace EuroDiffusion_2
                 if (parser_result == 2) { break; }
             }
 
-            //// Отрабатываем симуляцию для каждого кейса
-            ///
+            // Practice simulations for each case
+
             Diffusion diffusion = new Diffusion();
 
             foreach (var cs in cases)
@@ -59,19 +59,40 @@ namespace EuroDiffusion_2
                 diffusion.startDiffusion(cs);
             }
 
-            //// PRINT RESULT
+            // Print result
 
-            int i;
-            foreach (var elem in cases)
+            int i = 1;
+            foreach (var cs in cases)
             {
-                i = 1;
-                Console.WriteLine($"Case number{i}");
-                for (int j = 0; j < elem.countryQuantity; j++)
-                    Console.WriteLine($"{elem.toPrint[j].country} {elem.toPrint[j].days}");
+                Console.WriteLine($"Case Number {i}");
+                printStruct[] tmp = new printStruct[cs.countryQuantity];
+                tmp = BubbleSort(cs.toPrint);
+                foreach (var t in tmp)
+                {
+                    Console.WriteLine($"    {t.country} {t.days}");
+                }
                 i++;
             }
 
             Console.WriteLine("End Programm!");
+        }
+
+        static printStruct[] BubbleSort(printStruct[] mas)
+        {
+            printStruct temp;
+            for (int i = 0; i < mas.Length; i++)
+            {
+                for (int j = i + 1; j < mas.Length; j++)
+                {
+                    if (mas[i].days > mas[j].days)
+                    {
+                        temp = mas[i];
+                        mas[i] = mas[j];
+                        mas[j] = temp;
+                    }
+                }
+            }
+            return mas;
         }
     }
 }

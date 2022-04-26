@@ -2,11 +2,11 @@
 {
     public class Wallet
     {
-        // Дата
+        // Data
         public int[] _ownWallet;
         public int[] _tmpWallet;
 
-        // Конструктор
+        // Constructor
         public Wallet(caseStuct elem, int country_index)
         {
             _ownWallet = new int[20];

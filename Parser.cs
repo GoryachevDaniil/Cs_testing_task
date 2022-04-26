@@ -5,14 +5,14 @@ namespace EuroDiffusion_2
 {
     public class Parser
     {
-        // Дата
+        // Data
         public string[] _line;
         public int _country_quantity;
 
-        // Конструктор
+        // Constructor
         public Parser() { }
 
-        // Методы
+        // Methods
         public int start_parse(List<caseStuct> cases)
         {
             caseStuct cs = new caseStuct();
