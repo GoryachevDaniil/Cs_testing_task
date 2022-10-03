@@ -5,16 +5,13 @@ namespace EuroDiffusion_2
 {
     public class Diffusion
     {
-        // Data
         public City[,] _cityMap;
         public int _ex_x = 0;
         public int _ex_y = 0;
         public int _currentDay = 0;
 
-        // Constructor
         public Diffusion() { }
 
-        // Methods
         public void doSimulation(caseStuct cs)
         {
             int days = 1;

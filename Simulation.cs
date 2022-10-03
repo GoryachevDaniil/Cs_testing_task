@@ -5,30 +5,22 @@ namespace EuroDiffusion_2
 {
     public class Simulation
     {
-        // Дата
         public Town[,] _townMap;
         public int?[,] _map;
         public int _ex_x = 0;
         public int _ex_y = 0;
         public int currentDay = 0;
 
-        // Конструктор
         public Simulation() { }
 
-        // Методы
         public void doSimulation(caseStuct cs)
         {
             int days = 1;
             int diffMoney = 0;
-            //while (days < 5)
             while (true)
             {
                 if (cs.countryQuantity == 1)
                     days = 0;
-                // посчитать бабло на отправку
-                // перекинуть в тмп
-                // отнять с мэйна отправителя
-                // Чекнуть другие кошельки
                 for (int i = 0; i < _ex_x; i++)
                     for (int j = 0; j < _ex_y; j++)
                         if (_townMap[i, j] != null)
@@ -41,9 +33,6 @@ namespace EuroDiffusion_2
                                     _townMap[i, j]._wallet._ownWallet[k] -= diffMoney * _townMap[i, j]._neighborsCount;
                                 }
 
-
-                //с тмп закинуть на маин кэш
-                // почистить тмп    
                 for (int i = 0; i < _ex_x; i++)
                     for (int j = 0; j < _ex_y; j++)
                         if (_townMap[i, j] != null)
@@ -53,7 +42,6 @@ namespace EuroDiffusion_2
                                 _townMap[i, j]._wallet._tmpWallet[k] = 0;
                             }
 
-                //проверить на завершенность
                 int completeTown;
                 for (int i = 0; i < _ex_x; i++)
                     for (int j = 0; j < _ex_y; j++)
@@ -118,7 +106,6 @@ namespace EuroDiffusion_2
                         }
                         _townMap[i, j]._neighborsCount = neighborsCount;
                     }
-
         }
 
         public void registerCountries(caseStuct elem)

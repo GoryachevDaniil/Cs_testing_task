@@ -2,11 +2,9 @@
 {
     public class Wallet
     {
-        // Data
         public int[] _ownWallet;
         public int[] _tmpWallet;
 
-        // Constructor
         public Wallet(caseStuct elem, int country_index)
         {
             _ownWallet = new int[20];

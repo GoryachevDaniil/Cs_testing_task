@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace EuroDiffusion_2
 {
-    // Структуры
     public struct caseStuct
     {
         public int countryQuantity;
@@ -35,8 +34,6 @@ namespace EuroDiffusion_2
 
             Parser parser = new Parser();
 
-            // Parsing input data
-
             int parser_result;
             while (true)
             {
@@ -49,8 +46,6 @@ namespace EuroDiffusion_2
                 if (parser_result == 2) { break; }
             }
 
-            // Practice simulations for each case
-
             Diffusion diffusion = new Diffusion();
 
             foreach (var cs in cases)
@@ -58,8 +53,6 @@ namespace EuroDiffusion_2
                 if (cs.countryQuantity == 0) { break; }
                 diffusion.startDiffusion(cs);
             }
-
-            // Print result
 
             int i = 1;
             foreach (var cs in cases)

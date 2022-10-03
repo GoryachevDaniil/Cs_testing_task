@@ -4,7 +4,6 @@ namespace EuroDiffusion_2
 {
     public class City
     {
-        // Data
         public string _countryName;
         public int _countryIndex;
         public bool _complete;
@@ -13,8 +12,6 @@ namespace EuroDiffusion_2
         public List<City> _neighbors;
         public int _mark = 0;
 
-
-        // Constructor
         public City(caseStuct elem, int country_index, int x, int y)
         {
             _countryIndex = country_index;
